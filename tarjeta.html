@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pablo Amion - Analista Programador</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+            overflow: hidden;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #0a2463 0%, #1e3a5f 50%, #0f4c75 100%);
+            padding: 40px 30px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(30deg, transparent 0%, transparent 48%, rgba(0, 255, 255, 0.1) 50%, transparent 52%, transparent 100%),
+                linear-gradient(60deg, transparent 0%, transparent 48%, rgba(0, 200, 255, 0.08) 50%, transparent 52%, transparent 100%),
+                linear-gradient(120deg, transparent 0%, transparent 48%, rgba(0, 255, 200, 0.06) 50%, transparent 52%, transparent 100%);
+            background-size: 100px 100px, 150px 150px, 200px 200px;
+            opacity: 0.4;
+        }
+
+        .card-header::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(0, 255, 255, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(100, 200, 255, 0.1) 0%, transparent 50%);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            50% {
+                transform: translate(20px, 20px) scale(1.1);
+            }
+        }
+
+        /* Líneas de conexión estilo tech */
+        .card-header .tech-line {
+            position: absolute;
+            background: rgba(0, 255, 255, 0.2);
+            animation: pulse-line 3s ease-in-out infinite;
+        }
+
+        .card-header .tech-line:nth-child(1) {
+            width: 60px;
+            height: 1px;
+            top: 20%;
+            left: 10%;
+            transform: rotate(45deg);
+        }
+
+        .card-header .tech-line:nth-child(2) {
+            width: 80px;
+            height: 1px;
+            top: 70%;
+            right: 15%;
+            transform: rotate(-30deg);
+            animation-delay: 1s;
+        }
+
+        .card-header .tech-line:nth-child(3) {
+            width: 1px;
+            height: 50px;
+            top: 30%;
+            right: 20%;
+            animation-delay: 2s;
+        }
+
+        @keyframes pulse-line {
+            0%, 100% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            font-weight: bold;
+            color: #667eea;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .name {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .title {
+            font-size: 16px;
+            opacity: 0.95;
+            margin-bottom: 5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-body {
+            padding: 30px;
+        }
+
+        .description {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 15px;
+        }
+
+        .section-title {
+            color: #667eea;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+
+        .services {
+            margin-bottom: 30px;
+        }
+
+        .service-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 15px;
+            padding: 12px;
+            background: #f8f9ff;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+        }
+
+        .service-icon {
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .service-text {
+            color: #333;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .service-text strong {
+            color: #667eea;
+        }
+
+        .contact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 25px;
+            border-radius: 15px;
+            color: white;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateX(5px);
+        }
+
+        .contact-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-icon {
+            font-size: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .contact-text {
+            font-size: 14px;
+        }
+
+        .contact-text a {
+            color: white;
+            text-decoration: none;
+            word-break: break-all;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-text a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        @media (min-width: 768px) {
+            .card {
+                max-width: 600px;
+            }
+
+            .name {
+                font-size: 32px;
+            }
+
+            .title {
+                font-size: 18px;
+            }
+
+            .description {
+                font-size: 16px;
+            }
+
+            .service-text {
+                font-size: 15px;
+            }
+
+            .contact-text {
+                font-size: 15px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .card {
+                max-width: 700px;
+            }
+
+            .card-body {
+                padding: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="card-header">
+            <div class="avatar">PA</div>
+            <h1 class="name">Pablo Amion</h1>
+            <p class="title">Analista Programador | Soporte TI y Desarrollo Web Freelance</p>
+        </div>
+        
+        <div class="card-body">
+            <p class="description">
+                Profesional de TI especializado en soluciones tecnológicas integrales para empresas y particulares.
+            </p>
+
+            <div class="services">
+                <h2 class="section-title">Servicios Principales</h2>
+                
+                <div class="service-item">
+                    <div class="service-icon">🖥️</div>
+                    <div class="service-text">
+                        <strong>Diseño y Desarrollo Web:</strong> Creación de sitios web adaptables y funcionales para todo tipo de negocios. Incluye mantención y dominio .com o .cl a elección.
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-icon">💻</div>
+                    <div class="service-text">
+                        <strong>Reparación de Notebooks y PC:</strong> Diagnóstico y solución de problemas de hardware y software. Limpieza y optimización de velocidad con o sin formateo del equipo. Instalación de Office y programas de uso común. Consultoría en instalación de discos duros, memoria RAM y otros componentes.
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-icon">⚙️</div>
+                    <div class="service-text">
+                        <strong>Mantenimiento de Equipos:</strong> Optimización y mantenimiento preventivo para empresas y particulares.
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-icon">🔧</div>
+                    <div class="service-text">
+                        <strong>Soporte Técnico:</strong> Asistencia remota y presencial.
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact">
+                <h2 class="section-title" style="color: white;">Contacto</h2>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <div class="contact-text">
+                        <a href="mailto:pamionj@gmail.com">pamionj@gmail.com</a>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <div class="contact-text">
+                        <a href="tel:+56994000569">+569 94000569</a>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">📄</div>
+                    <div class="contact-text">
+                        <a href="https://pamionj.github.io/cv_web/" target="_blank" rel="noopener noreferrer">pamionj.github.io/cv_web/</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
